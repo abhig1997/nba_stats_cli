@@ -40,17 +40,18 @@ def main():
         print('9. Exit the program')
         main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
+            first_name = input("What is the first name of the player you'd like to view?\n")
+            last_name = input("What is the last name?\n")
+
             print("What information about the player would you like to view?")
             print("1. Basic Info (Vitals)")
+            print("2. View Averages For All Seasons")
+            print("3. View Regular Season Career Averages")
             print("9. Go back to main menu")
             choice = input("Pick a number from the list above.\n")
 
+            # getting basic info
             if int(choice) == 1:
-                # finna display vitals about the player
-                first_name = input("What is the first name of the player you'd like to view?\n")
-                last_name = input("What is the last name?\n")
-                # print(first_name)
-                # print(last_name)
                 id = player_functions.get_player_id(first_name, last_name) # the id of the player requested
                 if id is None:
                     print("The player was not found")
@@ -59,8 +60,25 @@ def main():
                     player_summary = player.PlayerSummary(id)
                     vitals = player_summary.info()
                     printer.pprint(vitals)
-
-
+            # getting averages for all seasons
+            elif int(choice) == 2:
+                id = player_functions.get_player_id(first_name, last_name)  # the id of the player requested
+                if id is None:
+                    print("The player was not found")
+                else:
+                    # getting the basic player summary
+                    player_career = player.PlayerCareer(id)
+                    printer.pprint(player_career.regular_season_totals())
+            # getting career regular season averages
+            elif int(choice) == 3:
+                id = player_functions.get_player_id(first_name, last_name)  # the id of the player requested
+                if id is None:
+                    print("The player was not found")
+                else:
+                    # getting the player career highs
+                    player_career = player.PlayerCareer(id)
+                    printer.pprint(player_career.regular_season_career_totals())
+            #tryna dip
             elif int(choice) == 9:
                 pass
             else:
