@@ -1,4 +1,3 @@
-import pandas as pd
 import json
 import pprint
 import requests
@@ -6,6 +5,7 @@ from nba_py import player
 from nba_py import constants
 from nba_py import game
 import boxscore_functions
+import player_functions
 
 # def get_player():
 #     response = player.get_player(first_name='Kyrie', last_name='Irving', season='2016-17', only_current=0, just_id=False)
@@ -30,21 +30,49 @@ def print_main_menu():
 To run the program
 """
 def main():
+    printer = pprint.PrettyPrinter(indent=4)
+
     print('Welcome to Abhi\'s NBA CLI!')
     loop=True
     while loop:
         print('What would you like to do?')
-        print('1. View a boxscore')
+        print('1. Get information about a player')
         print('9. Exit the program')
-        main_choice = input("Pick a number from the list below\n")
+        main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
-            print()
+            print("What information about the player would you like to view?")
+            print("1. Basic Info (Vitals)")
+            print("9. Go back to main menu")
+            choice = input("Pick a number from the list above.\n")
 
+            if int(choice) == 1:
+                # finna display vitals about the player
+                first_name = input("What is the first name of the player you'd like to view?\n")
+                last_name = input("What is the last name?\n")
+                # print(first_name)
+                # print(last_name)
+                id = player_functions.get_player_id(first_name, last_name) # the id of the player requested
+                if id is None:
+                    print("The player was not found")
+                else:
+                    # getting the basic player summary
+                    player_summary = player.PlayerSummary(id)
+                    vitals = player_summary.info()
+                    printer.pprint(vitals)
+
+
+            elif int(choice) == 9:
+                pass
+            else:
+                print("Invalid menu choice")
 
 
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
             return
+        else:
+            print("Invalid menu choice")
+
 
     last_choice = input("Would you like to run the program again? Press 1 to run again, or 2 to exit\n")
     if int(last_choice) == 1:
