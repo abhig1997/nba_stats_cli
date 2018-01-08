@@ -45,8 +45,14 @@ def find_games():
     		full_urls.append("http://stats.nesn.com" + box_score_urls[i])
 
 
+def get_upcoming_games():
+	response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
+	parsed = BeautifulSoup(response.text, 'lxml')
 
-
+	for i in parsed.find_all("td", "shsNamD"):
+		for j in i.find_all("a"):
+			# print(j.string)
+			get_upcoming_games.append(j.string)
 
 if __name__ == "__main__":
-    find_games()
+    get_upcoming_games()
