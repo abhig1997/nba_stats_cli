@@ -44,6 +44,8 @@ def main():
 
             # getting basic info
             if int(choice) == 1:
+                first_name.strip()
+                last_name.strip()
                 id = player_functions.get_player_id(first_name, last_name) # the id of the player requested
                 if id is None:
                     print("The player was not found")
@@ -54,6 +56,8 @@ def main():
                     printer.pprint(vitals)
             # submenu for season averages
             elif int(choice) == 2:
+                first_name.strip()
+                last_name.strip()
                 id = player_functions.get_player_id(first_name, last_name)  # the id of the player requested
                 if id is None:
                     print("The player was not found")
