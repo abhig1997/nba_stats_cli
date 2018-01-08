@@ -13,8 +13,10 @@ def find_games():
     response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
     parsed = BeautifulSoup(response.text, 'lxml')
 
-    teams_played = []
-    filteredteams = []
+    teams_played = [] # the list of teams that have already played today
+
+    all_scores = []
+    final_scores = []
 
     # print(parsed)
 
@@ -22,13 +24,20 @@ def find_games():
     	# print(teams_that_played.string)
     	if "Leaders" not in i.string:
     		teams_played.append(i.string)
-    	# teams_played.append(teams_that_played.string)
 
-    # for i in range(0, len(teams_played)):
-    # 	if (i % 3 != 0):
-    # 		print(teams_played[i])
+    for j in parsed.find_all("td", "shsTotD"):
+    	all_scores.append(j.string)
+
+    for k in range(0, len(all_scores)):
+    	if all_scores[k] == 'Tot':
+    		final_scores.append(all_scores[k+5])
+    		final_scores.append(all_scores[k+10])
+    		# print(all_scores[k+10])
+
+
+    # print(teams_played)
     print(teams_played)
-
+    print(final_scores)
 
 
 
