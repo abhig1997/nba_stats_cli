@@ -3,6 +3,7 @@ import requests
 from pprint import pprint
 
 from constants import *
+# import constants
 
 def find_games():
     response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
@@ -52,6 +53,14 @@ def find_games():
 
 
 def get_upcoming_games():
+	# upcoming_teams = []
+
+	# global upcoming_teams
+	# global upcoming_times
+
+	# constants.upcoming_teams = []
+	# constants.upcoming_times = []
+
 	response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
 	parsed = BeautifulSoup(response.text, 'lxml')
 
@@ -59,6 +68,8 @@ def get_upcoming_games():
 		for j in i.find_all("a"):
 			# print(j.string)
 			upcoming_teams.append(j.string)
+
+	# upcoming_times = []
 
 
 	for i in parsed.find_all("span", class_ = "shsTimezone shsETZone"):

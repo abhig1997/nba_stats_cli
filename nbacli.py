@@ -129,6 +129,7 @@ def main():
 
 
 def print_scores():
+    reset_constants()
     find_games()
     box_score_count = 0
     print()
@@ -154,6 +155,9 @@ def print_scores():
             print("---------------------------------------")
 
 def print_upcoming_games():
+
+    reset_constants()
+
     get_upcoming_games()
 
     print()
@@ -176,6 +180,12 @@ def print_upcoming_games():
     print()
     print()
 
+"""
+    Resets the constants to be empty arrays, so that the user can run multiple game queries in one program run
+"""
+def reset_constants():
+    upcoming_teams[:] = []
+    upcoming_times[:] = []
 
 
 if __name__ == "__main__":
