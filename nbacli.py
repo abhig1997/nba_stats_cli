@@ -6,8 +6,9 @@ from nba_py import constants
 from nba_py import game
 import boxscore_functions
 import player_functions
+from constants import *
+from get_games import *
 
-printer = pprint.PrettyPrinter(indent=4) # my PrettyPrinter
 
 # def get_player():
 #     response = player.get_player(first_name='Kyrie', last_name='Irving', season='2016-17', only_current=0, just_id=False)
@@ -36,6 +37,7 @@ def main():
     while loop:
         print('What would you like to do?')
         print('1. Get information about a player')
+        print('2. View Most Recent Scores')
         print('9. Exit the program')
         main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
@@ -99,6 +101,8 @@ def main():
             else:
                 print("Invalid menu choice")
 
+        elif int(main_choice) == 2:
+            print_scores()
 
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
@@ -115,6 +119,18 @@ def main():
         return
 
 
+def print_scores():
+    find_games()
+    box_score_count = 0
+    for i in range(0, len(teams_played)):
+        # print the first team that played and their score
+        print(teams_played[i] + "               " + final_scores[i])
+
+        if i % 2 != 0:
+            # finished printing out two teams, need to print out their box score url
+            print("Boxscore URL: " + full_urls[box_score_count])
+            box_score_count = box_score_count + 1
+            print()
 
 
 

@@ -45,11 +45,6 @@ def find_games():
     		full_urls.append("http://stats.nesn.com" + box_score_urls[i])
 
 
-    pprint(full_urls)
-    # print(box_score_urls)
-    # print(teams_played)
-    # print(teams_played)
-    # print(final_scores)
 
 
 

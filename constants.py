@@ -1,3 +1,12 @@
+import pprint
+
+
+
+printer = pprint.PrettyPrinter(indent=4) # my PrettyPrinter
+
+
+
+
 teams_played = []
 
 all_scores = []
