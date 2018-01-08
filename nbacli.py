@@ -62,35 +62,45 @@ def main():
                 if id is None:
                     print("The player was not found")
                 else:
-                    print("1. View Regular Season Totals")
-                    print("2. View Career Regular Season Totals")
-                    print("3. View Post Season Totals")
-                    print("4. View Career Post Season Totals")
-                    print("5. View All Star Season Totals")
-                    print("6. View Career All Star Season Totals")
-                    print("7. View College Season Totals")
-                    print("8. View Career College Season Totals")
+                    print("1. View Headline Stats for this Season")
+                    print("2. View Regular Season Totals")
+                    print("3. View Career Regular Season Totals")
+                    print("4. View Post Season Totals")
+                    print("5. View Career Post Season Totals")
+                    print("6. View All Star Season Totals")
+                    print("7. View Career All Star Season Totals")
+                    print("8. View College Season Totals")
+                    print("9. View Career College Season Totals")
                     player_career = player.PlayerCareer(id)
                     choice = input("Pick a number from the list above.\n")
                     num = int(choice)
 
+                    print()
+                    print()
+
                     if num == 1:
+                        player_summary = player.PlayerSummary(id)
+                        printer.pprint(player_summary.headline_stats())
+                    elif num == 2:
                         # view regular season totals
                         printer.pprint(player_career.regular_season_totals())
-                    elif num == 2:
-                        printer.pprint(player_career.regular_season_career_totals())
                     elif num == 3:
-                        printer.pprint(player_career.post_season_totals())
+                        printer.pprint(player_career.regular_season_career_totals())
                     elif num == 4:
-                        printer.pprint(player_career.post_season_career_totals())
+                        printer.pprint(player_career.post_season_totals())
                     elif num == 5:
-                        printer.pprint(player_career.all_star_season_totals())
+                        printer.pprint(player_career.post_season_career_totals())
                     elif num == 6:
-                        printer.pprint(player_career.career_all_star_season_totals())
+                        printer.pprint(player_career.all_star_season_totals())
                     elif num == 7:
-                        printer.pprint(player_career.college_season_totals())
+                        printer.pprint(player_career.career_all_star_season_totals())
                     elif num == 8:
+                        printer.pprint(player_career.college_season_totals())
+                    elif num == 9:
                         printer.pprint(player_career.college_season_career_totals())
+
+                    print()
+                    print()
             #tryna dip
             elif int(choice) == 9:
                 pass
