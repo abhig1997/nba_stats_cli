@@ -2,9 +2,9 @@ This program is intended to be a command line interface that will allow the user
 provided by nba.stats.com.
 
 
-Current Features:
-Player Lookup for Stat Averages
+Current Features:  
+Player Lookup for Stat Averages  
 Box Score lookup, for games today
 
-Developer: Abhi Gupta
+Developer: Abhi Gupta  
 Contact: agupta2450@gmail.com
