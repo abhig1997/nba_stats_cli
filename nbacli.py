@@ -10,16 +10,6 @@ from constants import *
 from get_games import *
 
 
-# def get_player():
-#     response = player.get_player(first_name='Kyrie', last_name='Irving', season='2016-17', only_current=0, just_id=False)
-#     # print(type(response))
-#     # print(response)
-#
-#
-# def test():
-#     dataframe = game.BoxscoreSummary("0021700570")
-#     print(dataframe.line_score())
-
 
 def get_career_totals(id):
     player_career = player.PlayerCareer(id)
@@ -37,7 +27,9 @@ def main():
     while loop:
         print('What would you like to do?')
         print('1. Get information about a player')
-        print('2. View Most Recent Scores')
+        # print()
+        print('2. View Finished Games for Today')
+        print('3. View Upcoming Games for Today')
         print('9. Exit the program')
         main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
@@ -104,6 +96,9 @@ def main():
         elif int(main_choice) == 2:
             print_scores()
 
+        elif int(main_choice) == 3:
+            print_upcoming_games()
+
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
             return
@@ -122,6 +117,18 @@ def main():
 def print_scores():
     find_games()
     box_score_count = 0
+    print()
+    print()
+
+    if len(teams_played) == 0:
+        # there havent been any games played yet
+        print("No games have been played today")
+        print()
+        print()
+        return
+
+
+
     for i in range(0, len(teams_played)):
         # print the first team that played and their score
         print(teams_played[i] + "               " + final_scores[i])
@@ -130,7 +137,30 @@ def print_scores():
             # finished printing out two teams, need to print out their box score url
             print("Boxscore URL: " + full_urls[box_score_count])
             box_score_count = box_score_count + 1
-            print()
+            print("---------------------------------------")
+
+def print_upcoming_games():
+    get_upcoming_games()
+
+    print()
+    print()
+    # print(len(upcoming_teams))
+    # print(len(upcoming_times))
+
+    # the necessary arrays should be populated now
+    time_count = 0
+
+    i = 0   
+
+    while i < len(upcoming_teams):
+        print(upcoming_teams[i] + " vs. " + upcoming_teams[i+1] + " at " + upcoming_times[time_count])
+        i = i + 2
+        time_count = time_count + 1
+        print("---------------------------------------") 
+
+
+    print()
+    print()
 
 
 

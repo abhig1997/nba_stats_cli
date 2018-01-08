@@ -44,6 +44,12 @@ def find_games():
     	if 'boxscore' in box_score_urls[i]:
     		full_urls.append("http://stats.nesn.com" + box_score_urls[i])
 
+    for h in parsed.find_all("td", "shsTeamCol shsNamD"):
+    	statuses.append(h.string)
+
+	# for h in soup.find_all("td","shsTeamCol shsNamD"):
+		# statuses.append(h.string)
+
 
 def get_upcoming_games():
 	response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
@@ -52,7 +58,12 @@ def get_upcoming_games():
 	for i in parsed.find_all("td", "shsNamD"):
 		for j in i.find_all("a"):
 			# print(j.string)
-			get_upcoming_games.append(j.string)
+			upcoming_teams.append(j.string)
+
+
+	for i in parsed.find_all("span", class_ = "shsTimezone shsETZone"):
+		to_string = str(i.string)
+		upcoming_times.append(to_string)
 
 if __name__ == "__main__":
     get_upcoming_games()

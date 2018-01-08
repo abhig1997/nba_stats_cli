@@ -17,4 +17,8 @@ box_score_urls = []
 
 full_urls = []
 
+statuses = []
+
 upcoming_teams = []
+
+upcoming_times = []
