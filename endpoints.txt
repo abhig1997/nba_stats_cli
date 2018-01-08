@@ -1,0 +1,16 @@
+This file is keeping track of any stats.nba.com endpoints that might be useful later, since I dont't want
+to keep scrolling through them online.
+
+
+
+endpoint: playerdashptshots
+used for PlayerShotTracking
+
+endpoint: playerdashptreb
+used for PlayerReboundTracking
+
+endpoint: playerdashptpass
+used for PlayerPassTracking
+
+endpoint: playervsplayer
+used for PlayerVsPlayer comparisons
