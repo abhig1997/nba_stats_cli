@@ -61,6 +61,7 @@ def get_upcoming_games():
 	# constants.upcoming_teams = []
 	# constants.upcoming_times = []
 
+
 	response = requests.get("http://stats.nesn.com/nba/scoreboard.asp?meta=true")
 	parsed = BeautifulSoup(response.text, 'lxml')
 

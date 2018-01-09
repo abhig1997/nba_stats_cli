@@ -3,6 +3,7 @@ import pprint
 import requests
 from nba_py import player
 from nba_py import constants
+from nba_py import team
 from nba_py import game
 import boxscore_functions
 import player_functions
@@ -30,7 +31,9 @@ def main():
         # print()
         print('2. View Finished Games for Today')
         print('3. View Upcoming Games for Today')
+        # print()
         print('9. Exit the program')
+        print('100. Used for testing')
         main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
             first_name = input("What is the first name of the player you'd like to view?\n")
@@ -116,6 +119,11 @@ def main():
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
             return
+
+        elif int(main_choice) == 100:
+            team_game_logs = team.TeamGameLogs("1610612738")
+            # print(type(team_game_logs))
+            printer.pprint(team_game_logs.info())
         else:
             print("Invalid menu choice")
 
@@ -132,6 +140,11 @@ def print_scores():
     reset_constants()
     find_games()
     box_score_count = 0
+
+    # print("these are statuses")
+    # print(statuses)
+
+
     print()
     print()
 
@@ -146,6 +159,9 @@ def print_scores():
 
     for i in range(0, len(teams_played)):
         # print the first team that played and their score
+        if i % 2 == 0:
+            print(statuses[box_score_count])
+            print()
         print(teams_played[i] + "               " + final_scores[i])
 
         if i % 2 != 0:
@@ -154,24 +170,45 @@ def print_scores():
             box_score_count = box_score_count + 1
             print("---------------------------------------")
 
+
 def print_upcoming_games():
 
     reset_constants()
 
     get_upcoming_games()
+    find_games()
+
+
+    # print("these are upcoming teams")
+    # print(upcoming_teams)
+
+    # reset_constants()
+    # find_games()
+#
+    # print("these are other teams")
+    # print(teams_played)
 
     print()
     print()
     # print(len(upcoming_teams))
     # print(len(upcoming_times))
 
+
+    new_teams = []
+    for i in upcoming_teams:
+        if i not in teams_played:
+            new_teams.append(i)
+
+    # print(new_teams)
+
+
     # the necessary arrays should be populated now
     time_count = 0
 
     i = 0   
 
-    while i < len(upcoming_teams):
-        print(upcoming_teams[i] + " vs. " + upcoming_teams[i+1] + " at " + upcoming_times[time_count])
+    while i < len(new_teams):
+        print(new_teams[i] + " vs. " + new_teams[i+1] + " at " + upcoming_times[time_count])
         i = i + 2
         time_count = time_count + 1
         print("---------------------------------------") 
@@ -187,6 +224,12 @@ def reset_constants():
     upcoming_teams[:] = []
     upcoming_times[:] = []
 
+    teams_played[:] = []
+    statuses[:] = []
+    final_scores[:] = []
+    full_urls[:] = []
+    all_scores[:] = []
+     
 
 if __name__ == "__main__":
     # print(constants.SeasonType.Regular)
