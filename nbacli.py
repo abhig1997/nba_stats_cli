@@ -121,9 +121,15 @@ def main():
             return
 
         elif int(main_choice) == 100:
-            team_game_logs = team.TeamGameLogs("1610612738")
-            # print(type(team_game_logs))
-            printer.pprint(team_game_logs.info())
+            # team_game_logs = team.TeamGameLogs("1610612738")
+            # # print(type(team_game_logs))
+            # printer.pprint(team_game_logs.info())
+            teamcommonroster = team.TeamCommonRoster("1610612738", season='2017-18')
+            coaches = teamcommonroster.coaches()
+            roster = teamcommonroster.roster()
+            print(coaches)
+            printer.pprint(roster)
+
         else:
             print("Invalid menu choice")
 
