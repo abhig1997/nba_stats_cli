@@ -16,16 +16,26 @@ def get_career_totals(id):
     player_career = player.PlayerCareer(id)
     printer.pprint(player_career.regular_season_career_totals())
 
-
+"""
+    Prints the main menu for the CLI. This is printed at the beginning of execution, and after a command is executed.
+"""
 def print_main_menu():
     print('What would you like to do?')
     print('1. Get information about a player')
     # print()
     print('2. View Completed/In Progress Games')
     print('3. View Today\'s Upcoming Games')
+    print('4. Get information about a team')
     # print()
     print('9. Exit the program')
     print('100. Used for testing')
+
+
+"""
+    Helper function to handle when the user wants to view information about a team.
+"""
+def print_team_information(team_choice):
+    print(team_choice)
 
 
 """
@@ -127,6 +137,11 @@ def main():
 
         elif int(main_choice) == 3:
             print_upcoming_games()
+
+        elif int(main_choice) == 4:
+            team_choice = input("Enter the name of the team you'd like to view (ex. Boston Celtics)\n")
+            print_team_information(team_choice)
+            
 
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
