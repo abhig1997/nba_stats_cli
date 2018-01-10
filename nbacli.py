@@ -40,6 +40,7 @@ def print_team_information(team_choice):
     # print(team_id)
     print('1. View Team Roster')
     print('2. View Team Coaches')
+    print('3. View Championship History')
     team_info_choice = input("What information about " + team_choice + " would you like to view?\n")
 
     if int(team_info_choice) == 1:
@@ -49,6 +50,10 @@ def print_team_information(team_choice):
     elif int(team_info_choice) == 2:
         teamcommonroster = team.TeamCommonRoster(team_id, season='2017-18')
         printer.pprint(teamcommonroster.coaches())
+
+    elif int(team_info_choice) == 3:
+        teamdetails = team.TeamDetails(team_id)
+        printer.pprint(teamdetails.awards_championships())
     else:
         print("Invalid menu choice")
 
