@@ -48,7 +48,10 @@ def print_team_information(team_choice):
     print('2. View Team Coaches')
     print('3. View Championship History')
     print('4. View Hall of Fame History')
+    print('5. View Retired Jerseys')
     team_info_choice = input("What information about " + team_choice + " would you like to view?\n")
+
+    teamdetails = team.TeamDetails(team_id)
 
     if int(team_info_choice) == 1:
         teamcommonroster = team.TeamCommonRoster(team_id, season='2017-18')
@@ -59,12 +62,16 @@ def print_team_information(team_choice):
         printer.pprint(teamcommonroster.coaches())
 
     elif int(team_info_choice) == 3:
-        teamdetails = team.TeamDetails(team_id)
+        # teamdetails = team.TeamDetails(team_id)
         printer.pprint(teamdetails.awards_championships())
 
     elif int(team_info_choice) == 4:
-        teamdetails = team.TeamDetails(team_id)
+        # teamdetails = team.TeamDetails(team_id)
         printer.pprint(teamdetails.hof())
+
+    elif int(team_info_choice) == 5:
+        # teamdetails == team.TeamDetails(team_id)
+        printer.pprint(teamdetails.retired())
 
     else:
         print("Invalid menu choice")
