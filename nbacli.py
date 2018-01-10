@@ -36,11 +36,18 @@ def print_main_menu():
 """
 def print_team_information(team_choice):
     # print(team_choice)
-    team_id = team_ids[team_choice]
+    try:
+        team_id = team_ids[team_choice]
+    except:
+        print("Invalid team.")
+        print()
+        print()
+        return
     # print(team_id)
     print('1. View Team Roster')
     print('2. View Team Coaches')
     print('3. View Championship History')
+    print('4. View Hall of Fame History')
     team_info_choice = input("What information about " + team_choice + " would you like to view?\n")
 
     if int(team_info_choice) == 1:
@@ -54,6 +61,11 @@ def print_team_information(team_choice):
     elif int(team_info_choice) == 3:
         teamdetails = team.TeamDetails(team_id)
         printer.pprint(teamdetails.awards_championships())
+
+    elif int(team_info_choice) == 4:
+        teamdetails = team.TeamDetails(team_id)
+        printer.pprint(teamdetails.hof())
+
     else:
         print("Invalid menu choice")
 
