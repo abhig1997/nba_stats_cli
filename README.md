@@ -1,6 +1,11 @@
 This program is intended to be a command line interface that will allow the user easy access to the information
 provided by nba.stats.com.
 
+Requirements:  
+nba_py
+
+Credit to stats.nesn.com for providing live updates  
+
 
 Current Features:  
 Player Lookup for Stat Averages  
