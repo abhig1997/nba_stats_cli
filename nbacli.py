@@ -49,6 +49,11 @@ def print_team_information(team_choice):
     print('3. View Championship History')
     print('4. View Hall of Fame History')
     print('5. View Retired Jerseys')
+    print('6. View Season Totals for Team\'s Players')
+    print('7. View Shooting Splits by Area')
+    print('8. View Season Totals for 2017-18')
+    print('9. Go back to main menu')
+
     team_info_choice = input("What information about " + team_choice + " would you like to view?\n")
 
     teamdetails = team.TeamDetails(team_id)
@@ -72,6 +77,22 @@ def print_team_information(team_choice):
     elif int(team_info_choice) == 5:
         # teamdetails == team.TeamDetails(team_id)
         printer.pprint(teamdetails.retired())
+
+    elif int(team_info_choice) == 6:
+        teamplayers = team.TeamPlayers(team_id, season='2017-18')
+        printer.pprint(teamplayers.season_totals())
+        # printer.pprint(teamdetails.social_sites())
+
+    elif int(team_info_choice) == 7:
+        shooting = team.TeamShootingSplits(team_id)
+        printer.pprint(shooting.shot_areas())
+
+    elif int(team_info_choice) == 8:
+        sum = team.TeamSummary(team_id, season='2017-18')
+        printer.pprint(sum.season_ranks())
+
+    elif int(team_info_choice) == 9:
+        return
 
     else:
         print("Invalid menu choice")
