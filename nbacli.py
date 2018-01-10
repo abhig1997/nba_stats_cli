@@ -9,6 +9,7 @@ import boxscore_functions
 import player_functions
 from constants import *
 from get_games import *
+from nba_py import Scoreboard
 
 
 
@@ -26,6 +27,8 @@ def print_main_menu():
     print('2. View Completed/In Progress Games')
     print('3. View Today\'s Upcoming Games')
     print('4. Get information about a team')
+    print('5. View Eastern Conference Standings')
+    print('6. View Western Conference Standings')
     # print()
     print('9. Exit the program')
     print('100. Used for testing')
@@ -97,6 +100,84 @@ def print_team_information(team_choice):
     else:
         print("Invalid menu choice")
 
+"""
+    Helper function to handle printing information for a player.
+"""
+def print_player_information(first_name, last_name):
+    print("What information about the player would you like to view?")
+    print("1. Basic Info (Vitals)")
+    print("2. View Season Averages")
+    print("9. Go back to main menu")
+    choice = input("Pick a number from the list above.\n")
+
+    # getting basic info
+    if int(choice) == 1:
+        first_name.strip()
+        last_name.strip()
+        id = player_functions.get_player_id(first_name, last_name) # the id of the player requested
+        if id is None:
+            print("The player was not found")
+        else:
+            # getting the basic player summary
+            player_summary = player.PlayerSummary(id)
+            vitals = player_summary.info()
+            printer.pprint(vitals)
+    # submenu for season averages
+    elif int(choice) == 2:
+        first_name.strip()
+        last_name.strip()
+        id = player_functions.get_player_id(first_name, last_name)  # the id of the player requested
+        if id is None:
+            print("The player was not found")
+        else:
+            print("1. View Headline Stats for this Season")
+            print("2. View Regular Season Totals")
+            print("3. View Career Regular Season Totals")
+            print("4. View Post Season Totals")
+            print("5. View Career Post Season Totals")
+            print("6. View All Star Season Totals")
+            print("7. View Career All Star Season Totals")
+            print("8. View College Season Totals")
+            print("9. View Career College Season Totals")
+            player_career = player.PlayerCareer(id)
+            choice = input("Pick a number from the list above.\n")
+            num = int(choice)
+
+            print()
+            print()
+
+            if num == 1:
+                player_summary = player.PlayerSummary(id)
+                printer.pprint(player_summary.headline_stats())
+            elif num == 2:
+                # view regular season totals
+                printer.pprint(player_career.regular_season_totals())
+            elif num == 3:
+                printer.pprint(player_career.regular_season_career_totals())
+            elif num == 4:
+                printer.pprint(player_career.post_season_totals())
+            elif num == 5:
+                printer.pprint(player_career.post_season_career_totals())
+            elif num == 6:
+                printer.pprint(player_career.all_star_season_totals())
+            elif num == 7:
+                printer.pprint(player_career.career_all_star_season_totals())
+            elif num == 8:
+                printer.pprint(player_career.college_season_totals())
+            elif num == 9:
+                printer.pprint(player_career.college_season_career_totals())
+
+            print()
+            print()
+    #tryna dip
+    elif int(choice) == 9:
+        return
+
+    elif int(choice) == 100:
+        printer.pprint(player.get_player(first_name, last_name, season='2017-18', just_id=False))
+    else:
+        print("Invalid menu choice")
+
 
 """
 To run the program
@@ -121,76 +202,7 @@ def main():
             first_name = input("What is the first name of the player you'd like to view?\n")
             last_name = input("What is the last name?\n")
 
-            print("What information about the player would you like to view?")
-            print("1. Basic Info (Vitals)")
-            print("2. View Season Averages")
-            print("9. Go back to main menu")
-            choice = input("Pick a number from the list above.\n")
-
-            # getting basic info
-            if int(choice) == 1:
-                first_name.strip()
-                last_name.strip()
-                id = player_functions.get_player_id(first_name, last_name) # the id of the player requested
-                if id is None:
-                    print("The player was not found")
-                else:
-                    # getting the basic player summary
-                    player_summary = player.PlayerSummary(id)
-                    vitals = player_summary.info()
-                    printer.pprint(vitals)
-            # submenu for season averages
-            elif int(choice) == 2:
-                first_name.strip()
-                last_name.strip()
-                id = player_functions.get_player_id(first_name, last_name)  # the id of the player requested
-                if id is None:
-                    print("The player was not found")
-                else:
-                    print("1. View Headline Stats for this Season")
-                    print("2. View Regular Season Totals")
-                    print("3. View Career Regular Season Totals")
-                    print("4. View Post Season Totals")
-                    print("5. View Career Post Season Totals")
-                    print("6. View All Star Season Totals")
-                    print("7. View Career All Star Season Totals")
-                    print("8. View College Season Totals")
-                    print("9. View Career College Season Totals")
-                    player_career = player.PlayerCareer(id)
-                    choice = input("Pick a number from the list above.\n")
-                    num = int(choice)
-
-                    print()
-                    print()
-
-                    if num == 1:
-                        player_summary = player.PlayerSummary(id)
-                        printer.pprint(player_summary.headline_stats())
-                    elif num == 2:
-                        # view regular season totals
-                        printer.pprint(player_career.regular_season_totals())
-                    elif num == 3:
-                        printer.pprint(player_career.regular_season_career_totals())
-                    elif num == 4:
-                        printer.pprint(player_career.post_season_totals())
-                    elif num == 5:
-                        printer.pprint(player_career.post_season_career_totals())
-                    elif num == 6:
-                        printer.pprint(player_career.all_star_season_totals())
-                    elif num == 7:
-                        printer.pprint(player_career.career_all_star_season_totals())
-                    elif num == 8:
-                        printer.pprint(player_career.college_season_totals())
-                    elif num == 9:
-                        printer.pprint(player_career.college_season_career_totals())
-
-                    print()
-                    print()
-            #tryna dip
-            elif int(choice) == 9:
-                pass
-            else:
-                print("Invalid menu choice")
+            print_player_information(first_name.strip(), last_name.strip())
 
         elif int(main_choice) == 2:
             print_scores()
@@ -201,7 +213,14 @@ def main():
         elif int(main_choice) == 4:
             team_choice = input("Enter the name of the team you'd like to view (ex. Boston Celtics)\n")
             print_team_information(team_choice)
+
+        elif int(main_choice) == 5:
+            board = Scoreboard()
+            printer.pprint(board.east_conf_standings_by_day())
             
+        elif int(main_choice) == 6:
+            board = Scoreboard()
+            printer.pprint(board.west_conf_standings_by_day())
 
         elif int(main_choice) == 9:
             print("Thank you for using Abhi's NBA Stats CLI!")
