@@ -17,6 +17,17 @@ def get_career_totals(id):
     printer.pprint(player_career.regular_season_career_totals())
 
 
+def print_main_menu():
+    print('What would you like to do?')
+    print('1. Get information about a player')
+    # print()
+    print('2. View Completed/In Progress Games')
+    print('3. View Today\'s Upcoming Games')
+    # print()
+    print('9. Exit the program')
+    print('100. Used for testing')
+
+
 """
 To run the program
 """
@@ -26,14 +37,15 @@ def main():
     print('Welcome to Abhi\'s NBA CLI!')
     loop=True
     while loop:
-        print('What would you like to do?')
-        print('1. Get information about a player')
-        # print()
-        print('2. View Completed/In Progress Games')
-        print('3. View Today\'s Upcoming Games')
-        # print()
-        print('9. Exit the program')
-        print('100. Used for testing')
+        # print('What would you like to do?')
+        # print('1. Get information about a player')
+        # # print()
+        # print('2. View Completed/In Progress Games')
+        # print('3. View Today\'s Upcoming Games')
+        # # print()
+        # print('9. Exit the program')
+        # print('100. Used for testing')
+        print_main_menu()
         main_choice = input("Pick a number from the list above\n")
         if int(main_choice) == 1:
             first_name = input("What is the first name of the player you'd like to view?\n")
@@ -124,11 +136,13 @@ def main():
             # team_game_logs = team.TeamGameLogs("1610612738")
             # # print(type(team_game_logs))
             # printer.pprint(team_game_logs.info())
-            teamcommonroster = team.TeamCommonRoster("1610612738", season='2017-18')
-            coaches = teamcommonroster.coaches()
-            roster = teamcommonroster.roster()
-            print(coaches)
-            printer.pprint(roster)
+            # teamcommonroster = team.TeamCommonRoster("1610612738", season='2017-18')
+            # coaches = teamcommonroster.coaches()
+            # roster = teamcommonroster.roster()
+            # print(coaches)
+            # printer.pprint(roster)
+            teamlist = team.TeamList(league_id='00')
+            printer.pprint(teamlist.info())
 
         else:
             print("Invalid menu choice")
