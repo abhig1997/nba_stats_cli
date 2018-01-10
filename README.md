@@ -4,7 +4,8 @@ provided by nba.stats.com.
 
 Current Features:  
 Player Lookup for Stat Averages  
-Box Score lookup, for games today
+Box Score lookup, for games today  
+Team Statistics for All NBA Teams (shooting splits, team history, etc...)  
 
 Developer: Abhi Gupta  
 Contact: agupta2450@gmail.com
