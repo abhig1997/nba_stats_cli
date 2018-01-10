@@ -107,6 +107,7 @@ def print_player_information(first_name, last_name):
     print("What information about the player would you like to view?")
     print("1. Basic Info (Vitals)")
     print("2. View Season Averages")
+    print("3. Compare to Another Player")
     print("9. Go back to main menu")
     choice = input("Pick a number from the list above.\n")
 
@@ -169,6 +170,17 @@ def print_player_information(first_name, last_name):
 
             print()
             print()
+
+    elif int(choice) == 3:
+        vs_player_first_name = input("What is the first name of the player you'd like to compare against?")
+        vs_player_last_name = input("What is their last name?")
+
+        id = player_functions.get_player_id(first_name, last_name)
+        vs_player_id = player_functions.get_player_id(vs_player_first_name, vs_player_last_name)  # the id of the player to be compared against
+        printer.pprint(player.PlayerVsPlayer(id, vs_player_id, season='2017-18').overall())
+
+
+
     #tryna dip
     elif int(choice) == 9:
         return
