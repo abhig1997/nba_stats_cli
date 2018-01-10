@@ -35,7 +35,9 @@ def print_main_menu():
     Helper function to handle when the user wants to view information about a team.
 """
 def print_team_information(team_choice):
-    print(team_choice)
+    # print(team_choice)
+    teamlist = team.TeamList()
+    printer.pprint(teamlist.info())
 
 
 """
