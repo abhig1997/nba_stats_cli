@@ -36,8 +36,21 @@ def print_main_menu():
 """
 def print_team_information(team_choice):
     # print(team_choice)
-    teamlist = team.TeamList()
-    printer.pprint(teamlist.info())
+    team_id = team_ids[team_choice]
+    # print(team_id)
+    print('1. View Team Roster')
+    print('2. View Team Coaches')
+    team_info_choice = input("What information about " + team_choice + " would you like to view?\n")
+
+    if int(team_info_choice) == 1:
+        teamcommonroster = team.TeamCommonRoster(team_id, season='2017-18')
+        printer.pprint(teamcommonroster.roster())
+
+    elif int(team_info_choice) == 2:
+        teamcommonroster = team.TeamCommonRoster(team_id, season='2017-18')
+        printer.pprint(teamcommonroster.coaches())
+    else:
+        print("Invalid menu choice")
 
 
 """

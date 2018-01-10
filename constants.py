@@ -34,7 +34,7 @@ team_ids = {
 	"Denver Nuggets":"1610612743",
 	"Golden State Warriors":"1610612744",
 	"Houston Rockets":"1610612745",
-	"Los Angeles Clippers":"1610612746"
+	"Los Angeles Clippers":"1610612746",
 	"Los Angeles Lakers":"1610612747",
 	"Miami Heat":"1610612748",
 	"Milwaukee Bucks":"1610612749",
