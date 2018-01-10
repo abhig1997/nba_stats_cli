@@ -172,8 +172,8 @@ def print_player_information(first_name, last_name):
             print()
 
     elif int(choice) == 3:
-        vs_player_first_name = input("What is the first name of the player you'd like to compare against?")
-        vs_player_last_name = input("What is their last name?")
+        vs_player_first_name = input("What is the first name of the player you'd like to compare against?\n")
+        vs_player_last_name = input("What is their last name?\n")
 
         id = player_functions.get_player_id(first_name, last_name)
         vs_player_id = player_functions.get_player_id(vs_player_first_name, vs_player_last_name)  # the id of the player to be compared against
